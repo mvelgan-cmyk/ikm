@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Чому ваша дитина «не хоче»? — квіз PRO Батьків</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6efe6;
+    --card: #fffaf4;
+    --ink: #34322d;
+    --muted: #7a7268;
+    --accent: #cd8059;
+    --accent-dark: #b2653f;
+    --accent-soft: #f3dccd;
+    --green: #8a9a7b;
+    --green-soft: #e3e8dc;
+    --line: #eadfd2;
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px 48px;
+  }
+  .wrap { width: 100%; max-width: 640px; }
+  .brand {
+    font-size: 13px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: 0 10px 30px rgba(120, 90, 60, .08);
+  }
+  h1 { font-size: clamp(28px, 6vw, 38px); line-height: 1.15; margin: 0 0 16px; font-weight: 800; }
+  h1 span { color: var(--accent); }
+  h2 { font-size: clamp(20px, 4.5vw, 24px); line-height: 1.3; margin: 0 0 22px; font-weight: 700; }
+  p { margin: 0 0 14px; }
+  .lead { font-size: 17px; }
+  .muted { color: var(--muted); font-size: 15px; }
+
+  label.field { display: block; font-weight: 600; margin: 18px 0 8px; }
+  input[type=text] {
+    width: 100%; font: inherit; padding: 14px 16px;
+    border: 1.5px solid var(--line); border-radius: 14px; background: #fff;
+    color: var(--ink);
+  }
+  input[type=text]:focus { outline: none; border-color: var(--accent); }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  .chip {
+    font: inherit; font-weight: 600; padding: 10px 18px; border-radius: 999px;
+    border: 1.5px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+  }
+  .chip[aria-pressed=true] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font: inherit; font-weight: 700; font-size: 16px;
+    padding: 15px 26px; border-radius: 14px; border: none; cursor: pointer;
+    background: var(--accent); color: #fff; text-decoration: none;
+    transition: background .15s, transform .1s;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn:active { transform: scale(.98); }
+  .btn:disabled { background: #d9c8ba; cursor: not-allowed; }
+  .btn.ghost { background: transparent; color: var(--accent-dark); border: 1.5px solid var(--accent); }
+  .btn.ghost:hover { background: var(--accent-soft); }
+  .btn.block { width: 100%; }
+  .actions { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .back { background: none; border: none; color: var(--muted); font: inherit; font-weight: 600; cursor: pointer; padding: 0; }
+  .back:hover { color: var(--accent-dark); }
+  .back[hidden] { visibility: hidden; display: inline; }
+  .bar { height: 8px; background: var(--accent-soft); border-radius: 99px; overflow: hidden; margin-bottom: 26px; }
+  .bar > div { height: 100%; background: var(--accent); width: 0; transition: width .3s ease; }
+
+  .options { display: grid; gap: 10px; }
+  .option {
+    text-align: left; font: inherit; font-size: 16px; color: var(--ink);
+    padding: 15px 18px; border-radius: 14px; border: 1.5px solid var(--line);
+    background: #fff; cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .option:hover { border-color: var(--accent); background: #fffdfb; }
+  .option.selected { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+  .result-tag {
+    display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    background: var(--green-soft); color: #5d6b51; padding: 6px 12px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .result-icon { font-size: 44px; line-height: 1; margin-bottom: 12px; }
+  .profile + .profile { margin-top: 26px; padding-top: 26px; border-top: 1px dashed var(--line); }
+  .cta-box {
+    margin-top: 28px; padding: 22px; border-radius: 16px; background: var(--accent-soft);
+  }
+  .cta-box strong { display: block; font-size: 17px; margin-bottom: 6px; }
+
+  .bars { margin-top: 26px; }
+  .bars h3 { font-size: 15px; margin: 0 0 12px; color: var(--muted); font-weight: 700; }
+  .row { display: grid; grid-template-columns: 150px 1fr 24px; gap: 10px; align-items: center; font-size: 14px; margin-bottom: 8px; }
+  .row .track { height: 10px; background: #f1e7dc; border-radius: 99px; overflow: hidden; }
+  .row .fill { height: 100%; background: var(--green); border-radius: 99px; }
+  .row.top .fill { background: var(--accent); }
+  .row .n { text-align: right; color: var(--muted); font-weight: 600; }
+
+  .foot { text-align: center; color: var(--muted); font-size: 13px; margin-top: 18px; }
+  .screen { animation: fade .25s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 480px) {
+    .card { padding: 24px 18px; }
+    .row { grid-template-columns: 110px 1fr 20px; }
+    .actions .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">PRO Батьків · GoITeens</div>
+  <div class="card"><div id="app"></div></div>
+  <div class="foot">Квіз не є психологічною діагностикою. Він допомагає помітити, з чого почати.</div>
+</div>
+
+<script>
+
+const PROFILES = {
+  A: { name: "Втомлений", icon: "🔋",
+       text: "Вашій дитині бракує не бажання, а енергії. Коли сну мало, а відпочинок зводиться до екрана, мозок просто не має ресурсу на зусилля, і «не хочу» насправді означає «не можу». Підганяння тут не допомагає: спершу треба повернути сили." },
+  B: { name: "Боїться помилитися", icon: "🌱",
+       text: "Для вашої дитини помилка болить сильніше, ніж для інших, тому безпечніше не почати, ніж спробувати й не впоратися. Зовні це схоже на лінь, але всередині це страх. Фрази «у тебе все вийде» тут часто не працюють, бо дитина боїться саме того, що не вийде." },
+  C: { name: "Не бачить сенсу", icon: "🧭",
+       text: "Ваша дитина не розуміє, навіщо їй це завдання особисто, тому енергія йде лише на те, що здається своїм. Пояснення «знадобиться в майбутньому» для неї надто далекі. Шукати сенс варто через її інтереси і через відчуття, що вона на щось впливає." },
+  D: { name: "Бореться за контроль", icon: "🛡️",
+       text: "Для вашої дитини «не хочу» часто означає «не хочу, бо мені наказали». Їй важливо самій щось вирішувати, і кожне нагадування сприймається як тиск. Чим сильніше наполягати, тим міцніший опір, тож працює не контроль, а вибір у межах правил." },
+  E: { name: "Перевантажений", icon: "🎒",
+       text: "У вашої дитини забагато справ і замало вільного часу між ними. Коли розклад розписаний щільно, на будь-яке нове завдання вже немає місця, і «не хочу» стає способом захиститися. Тут допоможе не ще одна мотивація, а перегляд навантаження." }
+};
+
+const QUESTIONS = [
+  { q: "Що найчастіше відбувається, коли ви нагадуєте дитині про завдання?", o: {
+      A: "Відповідає «потім», а сама лежить або сидить у телефоні без сил",
+      B: "Починає, але швидко кидає, якщо щось не виходить",
+      C: "Питає «а навіщо мені це?»",
+      D: "Чим більше нагадуєте, тим сильніше впирається",
+      E: "Каже «я не встигаю» або «в мене ще купа всього»" } },
+  { q: "Як дитина зазвичай почувається ввечері в будній день?", o: {
+      A: "Млява, роздратована, хоче тільки лежати",
+      B: "Нервує через завтрашні контрольні чи заняття",
+      C: "Нормально, але нічим не цікавиться",
+      D: "Нормально, поки її не просять щось зробити",
+      E: "Ввечері вона ще не вільна: досі робить уроки чи повертається з гуртка" } },
+  { q: "Яку фразу ви чуєте від дитини найчастіше?", o: {
+      A: "«Я втомився»",
+      B: "«У мене все одно не вийде»",
+      C: "«Це нудно» або «це нікому не треба»",
+      D: "«Відчепися» або «я сам вирішу»",
+      E: "«Я не встигаю»" } },
+  { q: "Як дитина реагує на помилку чи погану оцінку?", o: {
+      A: "Майже ніяк, бо немає сил переживати",
+      B: "Сильно засмучується, плаче або злиться на себе",
+      C: "Байдуже: «ну і що»",
+      D: "Звинувачує вчителя чи вас",
+      E: "Засмучується, бо тепер треба ще й виправляти" } },
+  { q: "Що відбувається з новим гуртком або курсом через місяць-два?", o: {
+      A: "Ходить, але без енергії",
+      B: "Хоче кинути після першої невдачі або порівняння з іншими",
+      C: "Інтерес згасає, коли минає новизна",
+      D: "Подобається, поки сама обирала; якщо обирали ви — опирається",
+      E: "Він стає ще одним пунктом у забитому розкладі" } },
+  { q: "Скільки дитина спить і як прокидається?", o: {
+      A: "Лягає пізно, вранці важко підняти",
+      B: "Буває, що погано спить перед важливими подіями",
+      C: "Спить нормально, з цим проблем немає",
+      D: "Сварки за час відбою — звична історія",
+      E: "Лягає пізно, бо раніше не встигає закінчити справи" } },
+  { q: "Як дитина проводить вільний час?", o: {
+      A: "Переважно в телефоні або перед екраном",
+      B: "Обирає тільки те, що вже добре вміє",
+      C: "Шукає щось цікаве, але не знаходить",
+      D: "Охоче, якщо ніхто не контролює",
+      E: "Вільного часу майже немає" } },
+  { q: "Коли дитина з ентузіазмом береться за справу?", o: {
+      A: "Після вихідних або канікул, коли відпочила",
+      B: "Коли впевнена, що в неї вийде",
+      C: "Коли розуміє, навіщо це їй особисто",
+      D: "Коли сама вирішила, що й коли робити",
+      E: "Коли немає інших справ і дедлайнів" } },
+  { q: "Як ви зазвичай реагуєте на «не хочу»?", o: {
+      A: "Відпускаю відпочити, але потім знову те саме",
+      B: "Підбадьорюю: «у тебе все вийде»",
+      C: "Пояснюю, як це знадобиться в майбутньому",
+      D: "Наполягаю, і зрештою все закінчується сваркою",
+      E: "Допомагаю або роблю частину замість дитини" } },
+  { q: "Що з цього найбільше схоже на вашу дитину останній місяць?", o: {
+      A: "Ніби розряджена батарейка",
+      B: "Ніби боїться спробувати, щоб не розчаруватися",
+      C: "Ніби не бачить у цьому нічого свого",
+      D: "Ніби кожне прохання — це битва",
+      E: "Ніби біжить марафон без фінішу" } }
+];
+
+/* ===== СТАН ===== */
+const app = document.getElementById("app");
+let state = { age: "", step: 0, answers: [], order: [] };
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+/* ===== ЕКРАНИ ===== */
+function renderIntro() {
+  app.innerHTML = `
+    <div class="screen">
+      <h1>Чому ваша дитина <span>«не хоче»</span>?</h1>
+      <p class="lead">«Не хочу» — це не діагноз і не лінь. Це сигнал, і за ним завжди стоїть конкретна причина: втома, страх помилки, відсутність сенсу чи щось інше.</p>
+      <p>Дайте відповідь на 10 коротких запитань — це займе 2–3 хвилини. Наприкінці ви отримаєте профіль своєї дитини і зрозумієте, з чого почати.</p>
+      <p class="muted">Правильних і неправильних відповідей немає. Обирайте те, що найчастіше трапляється у вашій сім'ї останній місяць.</p>
+
+      <label class="field">Скільки років дитині?</label>
+      <div class="chips" role="group">
+        ${["5–7", "8–12", "13–17"].map(a => `<button type="button" class="chip" data-age="${a}" aria-pressed="${state.age === a}">${a}</button>`).join("")}
+      </div>
+
+      <div class="actions"><button class="btn block" id="start">Почати</button></div>
+    </div>`;
+  const startBtn = document.getElementById("start");
+  const check = () => { startBtn.disabled = !state.age; };
+  app.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+    state.age = b.dataset.age;
+    app.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+    check();
+  }));
+  startBtn.addEventListener("click", () => {
+    state.step = 0; state.answers = [];
+    state.order = QUESTIONS.map(q => shuffle(Object.keys(q.o)));
+    renderQuestion();
+  });
+  check();
+}
+
+function renderQuestion() {
+  const i = state.step, Q = QUESTIONS[i];
+  const pct = Math.round((i / QUESTIONS.length) * 100);
+  app.innerHTML = `
+    <div class="screen">
+      <div class="progress-top">
+        <button class="back" id="back" ${i === 0 ? "hidden" : ""}>← Назад</button>
+        <span>Запитання ${i + 1} з ${QUESTIONS.length}</span>
+      </div>
+      <div class="bar"><div style="width:${pct}%"></div></div>
+      <h2>${esc(Q.q)}</h2>
+      <div class="options">
+        ${state.order[i].map(k => `<button class="option ${state.answers[i] === k ? "selected" : ""}" data-k="${k}">${esc(Q.o[k])}</button>`).join("")}
+      </div>
+    </div>`;
+  app.querySelectorAll(".option").forEach(b => b.addEventListener("click", () => {
+    state.answers[i] = b.dataset.k;
+    b.classList.add("selected");
+    setTimeout(() => {
+      if (state.step < QUESTIONS.length - 1) { state.step++; renderQuestion(); }
+      else renderResult();
+    }, 220);
+  }));
+  const back = document.getElementById("back");
+  if (back) back.addEventListener("click", () => { if (state.step > 0) { state.step--; renderQuestion(); } });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderResult() {
+  const counts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
+  state.answers.forEach(k => counts[k]++);
+  const max = Math.max(...Object.values(counts));
+  const winners = Object.keys(counts).filter(k => counts[k] === max);
+
+  const profilesHtml = winners.map(k => `
+    <div class="profile">
+      <div class="result-icon">${PROFILES[k].icon}</div>
+      <h1 style="font-size:30px">${PROFILES[k].name}</h1>
+      <p class="lead">${PROFILES[k].text}</p>
+    </div>`).join("");
+
+  const tieNote = winners.length > 1 ? `
+    <p class="lead">У вашої дитини поєдналися ${winners.length === 2 ? "дві причини" : "кілька причин"}: ${winners.map(k => "«" + PROFILES[k].name + "»").join(" і ")}. Так буває часто: одна причина підсилює іншу.</p>` : "";
+
+  const sorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+  const barsHtml = sorted.map(k => `
+    <div class="row ${winners.includes(k) ? "top" : ""}">
+      <span>${PROFILES[k].name}</span>
+      <div class="track"><div class="fill" style="width:${(counts[k] / QUESTIONS.length) * 100}%"></div></div>
+      <span class="n">${counts[k]}</span>
+    </div>`).join("");
+
+  app.innerHTML = `
+    <div class="screen">
+      <span class="result-tag">Ваш результат · дитина ${esc(state.age)} років</span>
+      ${tieNote}
+      ${profilesHtml}
+
+      <div class="bars">
+        <h3>Як розподілилися ваші відповіді</h3>
+        ${barsHtml}
+      </div>
+
+      <div class="actions"><button class="btn ghost" id="restart">Пройти ще раз</button></div>
+    </div>`;
+  document.getElementById("restart").addEventListener("click", () => { state.step = 0; state.answers = []; renderIntro(); });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+renderIntro();
+</script>
+</body>
+</html>
